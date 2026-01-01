@@ -37,12 +37,12 @@ jobs:
           git diff "origin/$DEFAULT_BRANCH" | tee git.diff
 
       - name: Rust cache
-        uses: Swatinem/rust-cache@98c8021b550208e191a6a3145459bfc9fb29c4c0 # v2
+        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
         with:
           cache-on-failure: true
 
       - name: Install `cargo-mutants`
-        uses: taiki-e/install-action@0c5db7f7f897c03b771660e91d065338615679f4 # v2
+        uses: taiki-e/install-action@e0db384ad69f5ba2c6dd0129d8934e0d0ba465c1 # v2
         with:
           tool: cargo-mutants
 
