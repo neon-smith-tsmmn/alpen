@@ -1756,12 +1756,51 @@ dependencies = [
 ]
 
 [[package]]
+name = "strata-asm-common"
+version = "0.1.0"
+dependencies = [
+ "bitcoin",
+ "borsh",
+ "serde",
+ "strata-asm-types",
+ "strata-l1-txfmt",
+ "strata-msg-fmt",
+ "thiserror 2.0.16",
+ "tracing",
+]
+
+[[package]]
+name = "strata-asm-stf"
+version = "0.1.0"
+dependencies = [
+ "bitcoin",
+ "borsh",
+ "strata-asm-common",
+ "strata-l1-txfmt",
+]
+
+[[package]]
+name = "strata-asm-types"
+version = "0.3.0-alpha.1"
+dependencies = [
+ "arbitrary",
+ "bitcoin",
+ "borsh",
+ "digest",
+ "serde",
+ "sha2",
+ "strata-primitives",
+ "thiserror 2.0.16",
+]
+
+[[package]]
 name = "strata-chainexec"
 version = "0.1.0"
 dependencies = [
  "strata-chaintsn",
+ "strata-ol-chain-types",
+ "strata-ol-chainstate-types",
  "strata-primitives",
- "strata-state",
  "thiserror 2.0.16",
 ]
 
@@ -1771,8 +1810,11 @@ version = "0.3.0-alpha.1"
 dependencies = [
  "bitcoin",
  "rand_chacha 0.3.1",
- "rand_core 0.6.4",
+ "rand_core 0.9.3",
+ "strata-asm-types",
  "strata-crypto",
+ "strata-ol-chain-types",
+ "strata-ol-chainstate-types",
  "strata-primitives",
  "strata-state",
  "thiserror 2.0.16",
@@ -1797,10 +1839,49 @@ dependencies = [
 [[package]]
 name = "strata-l1-txfmt"
 version = "0.1.0"
-source = "git+https://github.com/alpenlabs/strata-common#53b79d1fd710a9d3516cfdf94bfa8a5cda43c949"
+source = "git+https://github.com/alpenlabs/strata-common#5b19c669ba1de0eff83ee0a79dfce82ed97c1fe1"
 dependencies = [
+ "arbitrary",
  "bitcoin",
+ "borsh",
+ "serde",
  "thiserror 2.0.16",
+]
+
+[[package]]
+name = "strata-msg-fmt"
+version = "0.1.0"
+source = "git+https://github.com/alpenlabs/strata-common#5b19c669ba1de0eff83ee0a79dfce82ed97c1fe1"
+dependencies = [
+ "thiserror 2.0.16",
+]
+
+[[package]]
+name = "strata-ol-chain-types"
+version = "0.3.0-alpha.1"
+dependencies = [
+ "arbitrary",
+ "borsh",
+ "serde",
+ "strata-asm-types",
+ "strata-crypto",
+ "strata-primitives",
+ "strata-state",
+ "thiserror 2.0.16",
+ "tracing",
+]
+
+[[package]]
+name = "strata-ol-chainstate-types"
+version = "0.3.0-alpha.1"
+dependencies = [
+ "arbitrary",
+ "bitcoin",
+ "borsh",
+ "strata-asm-types",
+ "strata-primitives",
+ "strata-state",
+ "tracing",
 ]
 
 [[package]]
@@ -1837,8 +1918,9 @@ dependencies = [
  "borsh",
  "strata-chainexec",
  "strata-chaintsn",
+ "strata-ol-chain-types",
+ "strata-ol-chainstate-types",
  "strata-primitives",
- "strata-state",
  "zkaleido",
  "zkaleido-native-adapter",
 ]
@@ -1850,13 +1932,12 @@ dependencies = [
  "anyhow",
  "arbitrary",
  "async-trait",
- "bitcoin",
  "borsh",
  "serde",
- "strata-crypto",
+ "strata-asm-common",
+ "strata-asm-stf",
+ "strata-asm-types",
  "strata-primitives",
- "thiserror 2.0.16",
- "tracing",
 ]
 
 [[package]]
