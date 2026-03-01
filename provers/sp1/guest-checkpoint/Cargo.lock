@@ -1794,12 +1794,51 @@ dependencies = [
 ]
 
 [[package]]
+name = "strata-asm-common"
+version = "0.1.0"
+dependencies = [
+ "bitcoin",
+ "borsh",
+ "serde",
+ "strata-asm-types",
+ "strata-l1-txfmt",
+ "strata-msg-fmt",
+ "thiserror 2.0.16",
+ "tracing",
+]
+
+[[package]]
+name = "strata-asm-stf"
+version = "0.1.0"
+dependencies = [
+ "bitcoin",
+ "borsh",
+ "strata-asm-common",
+ "strata-l1-txfmt",
+]
+
+[[package]]
+name = "strata-asm-types"
+version = "0.3.0-alpha.1"
+dependencies = [
+ "arbitrary",
+ "bitcoin",
+ "borsh",
+ "digest",
+ "serde",
+ "sha2",
+ "strata-primitives",
+ "thiserror 2.0.16",
+]
+
+[[package]]
 name = "strata-chainexec"
 version = "0.1.0"
 dependencies = [
  "strata-chaintsn",
+ "strata-ol-chain-types",
+ "strata-ol-chainstate-types",
  "strata-primitives",
- "strata-state",
  "thiserror 2.0.16",
 ]
 
@@ -1810,12 +1849,15 @@ dependencies = [
  "bitcoin",
  "rand_chacha 0.3.1",
  "rand_core 0.6.4",
+ "strata-asm-types",
  "strata-crypto",
+ "strata-ol-chain-types",
+ "strata-ol-chainstate-types",
  "strata-primitives",
  "strata-state",
  "thiserror 2.0.16",
  "tracing",
- "zkaleido",
+ "zkaleido 0.1.0 (git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc16)",
 ]
 
 [[package]]
@@ -1829,16 +1871,55 @@ dependencies = [
  "musig2",
  "strata-primitives",
  "thiserror 2.0.16",
- "zkaleido",
+ "zkaleido 0.1.0 (git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc16)",
 ]
 
 [[package]]
 name = "strata-l1-txfmt"
 version = "0.1.0"
-source = "git+https://github.com/alpenlabs/strata-common#53b79d1fd710a9d3516cfdf94bfa8a5cda43c949"
+source = "git+https://github.com/alpenlabs/strata-common#5b19c669ba1de0eff83ee0a79dfce82ed97c1fe1"
 dependencies = [
+ "arbitrary",
  "bitcoin",
+ "borsh",
+ "serde",
  "thiserror 2.0.16",
+]
+
+[[package]]
+name = "strata-msg-fmt"
+version = "0.1.0"
+source = "git+https://github.com/alpenlabs/strata-common#5b19c669ba1de0eff83ee0a79dfce82ed97c1fe1"
+dependencies = [
+ "thiserror 2.0.16",
+]
+
+[[package]]
+name = "strata-ol-chain-types"
+version = "0.3.0-alpha.1"
+dependencies = [
+ "arbitrary",
+ "borsh",
+ "serde",
+ "strata-asm-types",
+ "strata-crypto",
+ "strata-primitives",
+ "strata-state",
+ "thiserror 2.0.16",
+ "tracing",
+]
+
+[[package]]
+name = "strata-ol-chainstate-types"
+version = "0.3.0-alpha.1"
+dependencies = [
+ "arbitrary",
+ "bitcoin",
+ "borsh",
+ "strata-asm-types",
+ "strata-primitives",
+ "strata-state",
+ "tracing",
 ]
 
 [[package]]
@@ -1863,7 +1944,7 @@ dependencies = [
  "strata-l1-txfmt",
  "thiserror 2.0.16",
  "zeroize",
- "zkaleido",
+ "zkaleido 0.1.0 (git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc16)",
  "zkaleido-risc0-groth16-verifier",
  "zkaleido-sp1-groth16-verifier",
 ]
@@ -1874,7 +1955,7 @@ version = "0.3.0-alpha.1"
 dependencies = [
  "strata-proofimpl-cl-stf",
  "strata-state",
- "zkaleido",
+ "zkaleido 0.1.0 (git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc16)",
  "zkaleido-native-adapter",
 ]
 
@@ -1885,9 +1966,10 @@ dependencies = [
  "borsh",
  "strata-chainexec",
  "strata-chaintsn",
+ "strata-ol-chain-types",
+ "strata-ol-chainstate-types",
  "strata-primitives",
- "strata-state",
- "zkaleido",
+ "zkaleido 0.1.0 (git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc16)",
  "zkaleido-native-adapter",
 ]
 
@@ -1898,13 +1980,12 @@ dependencies = [
  "anyhow",
  "arbitrary",
  "async-trait",
- "bitcoin",
  "borsh",
  "serde",
- "strata-crypto",
+ "strata-asm-common",
+ "strata-asm-stf",
+ "strata-asm-types",
  "strata-primitives",
- "thiserror 2.0.16",
- "tracing",
 ]
 
 [[package]]
@@ -2182,14 +2263,31 @@ dependencies = [
 ]
 
 [[package]]
-name = "zkaleido-native-adapter"
+name = "zkaleido"
 version = "0.1.0"
-source = "git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc16#0144e0a1d1ec0b32769139a202f168f2c398ea30"
+source = "git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc20#d5b46312a55e8409a08a8437716ca42128e3d085"
 dependencies = [
+ "arbitrary",
+ "async-trait",
  "bincode",
  "borsh",
  "serde",
- "zkaleido",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "zkaleido-native-adapter"
+version = "0.1.0"
+source = "git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc20#d5b46312a55e8409a08a8437716ca42128e3d085"
+dependencies = [
+ "async-trait",
+ "bincode",
+ "borsh",
+ "hex",
+ "k256 0.13.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand_core 0.6.4",
+ "serde",
+ "zkaleido 0.1.0 (git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc20)",
 ]
 
 [[package]]
@@ -2204,7 +2302,7 @@ dependencies = [
  "serde",
  "sha2",
  "thiserror 1.0.69",
- "zkaleido",
+ "zkaleido 0.1.0 (git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc16)",
 ]
 
 [[package]]
@@ -2219,7 +2317,7 @@ dependencies = [
  "sha2",
  "substrate-bn",
  "thiserror 1.0.69",
- "zkaleido",
+ "zkaleido 0.1.0 (git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc16)",
 ]
 
 [[package]]
@@ -2232,5 +2330,5 @@ dependencies = [
  "serde",
  "sha2",
  "sp1-zkvm",
- "zkaleido",
+ "zkaleido 0.1.0 (git+https://github.com/alpenlabs/zkaleido?tag=v0.1.0-alpha-rc16)",
 ]
