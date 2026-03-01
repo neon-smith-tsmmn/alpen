@@ -335,9 +335,9 @@ dependencies = [
 
 [[package]]
 name = "bitcoin-bosd"
-version = "0.4.2"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fea193f1edc6035cd266213fe573828a44e4ac36892f3661bd640eb5241e0450"
+checksum = "2ec2731a2aeb526b4f1362429aded6c6675aa61113d457ac8807de2adb392aa8"
 dependencies = [
  "arbitrary",
  "bitcoin",
@@ -1662,18 +1662,28 @@ dependencies = [
 
 [[package]]
 name = "serde"
-version = "1.0.219"
+version = "1.0.228"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5f0e2c6ed6606019b4e29e69dbaba95b11854410e5347d525002456dbbb786b6"
+checksum = "9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e"
+dependencies = [
+ "serde_core",
+ "serde_derive",
+]
+
+[[package]]
+name = "serde_core"
+version = "1.0.228"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "41d385c7d4ca58e59fc732af25c3983b67ac852c1a25000afe1175de458b67ad"
 dependencies = [
  "serde_derive",
 ]
 
 [[package]]
 name = "serde_derive"
-version = "1.0.219"
+version = "1.0.228"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b0276cf7f2c73365f7157c8123c21cd9a50fbbd844757af28ca1f5925fc2a00"
+checksum = "d540f220d3187173da220f885ab66608367b6574e925011a9353e4badda91d79"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1794,12 +1804,51 @@ dependencies = [
 ]
 
 [[package]]
+name = "strata-asm-common"
+version = "0.1.0"
+dependencies = [
+ "bitcoin",
+ "borsh",
+ "serde",
+ "strata-asm-types",
+ "strata-l1-txfmt",
+ "strata-msg-fmt",
+ "thiserror 2.0.16",
+ "tracing",
+]
+
+[[package]]
+name = "strata-asm-stf"
+version = "0.1.0"
+dependencies = [
+ "bitcoin",
+ "borsh",
+ "strata-asm-common",
+ "strata-l1-txfmt",
+]
+
+[[package]]
+name = "strata-asm-types"
+version = "0.3.0-alpha.1"
+dependencies = [
+ "arbitrary",
+ "bitcoin",
+ "borsh",
+ "digest",
+ "serde",
+ "sha2",
+ "strata-primitives",
+ "thiserror 2.0.16",
+]
+
+[[package]]
 name = "strata-chainexec"
 version = "0.1.0"
 dependencies = [
  "strata-chaintsn",
+ "strata-ol-chain-types",
+ "strata-ol-chainstate-types",
  "strata-primitives",
- "strata-state",
  "thiserror 2.0.16",
 ]
 
@@ -1810,7 +1859,10 @@ dependencies = [
  "bitcoin",
  "rand_chacha 0.3.1",
  "rand_core 0.6.4",
+ "strata-asm-types",
  "strata-crypto",
+ "strata-ol-chain-types",
+ "strata-ol-chainstate-types",
  "strata-primitives",
  "strata-state",
  "thiserror 2.0.16",
@@ -1835,10 +1887,49 @@ dependencies = [
 [[package]]
 name = "strata-l1-txfmt"
 version = "0.1.0"
-source = "git+https://github.com/alpenlabs/strata-common#53b79d1fd710a9d3516cfdf94bfa8a5cda43c949"
+source = "git+https://github.com/alpenlabs/strata-common#5b19c669ba1de0eff83ee0a79dfce82ed97c1fe1"
 dependencies = [
+ "arbitrary",
  "bitcoin",
+ "borsh",
+ "serde",
  "thiserror 2.0.16",
+]
+
+[[package]]
+name = "strata-msg-fmt"
+version = "0.1.0"
+source = "git+https://github.com/alpenlabs/strata-common#5b19c669ba1de0eff83ee0a79dfce82ed97c1fe1"
+dependencies = [
+ "thiserror 2.0.16",
+]
+
+[[package]]
+name = "strata-ol-chain-types"
+version = "0.3.0-alpha.1"
+dependencies = [
+ "arbitrary",
+ "borsh",
+ "serde",
+ "strata-asm-types",
+ "strata-crypto",
+ "strata-primitives",
+ "strata-state",
+ "thiserror 2.0.16",
+ "tracing",
+]
+
+[[package]]
+name = "strata-ol-chainstate-types"
+version = "0.3.0-alpha.1"
+dependencies = [
+ "arbitrary",
+ "bitcoin",
+ "borsh",
+ "strata-asm-types",
+ "strata-primitives",
+ "strata-state",
+ "tracing",
 ]
 
 [[package]]
@@ -1885,8 +1976,9 @@ dependencies = [
  "borsh",
  "strata-chainexec",
  "strata-chaintsn",
+ "strata-ol-chain-types",
+ "strata-ol-chainstate-types",
  "strata-primitives",
- "strata-state",
  "zkaleido",
  "zkaleido-native-adapter",
 ]
@@ -1898,13 +1990,12 @@ dependencies = [
  "anyhow",
  "arbitrary",
  "async-trait",
- "bitcoin",
  "borsh",
  "serde",
- "strata-crypto",
+ "strata-asm-common",
+ "strata-asm-stf",
+ "strata-asm-types",
  "strata-primitives",
- "thiserror 2.0.16",
- "tracing",
 ]
 
 [[package]]
