@@ -269,7 +269,7 @@ reth-node-core = { git = "https://github.com/paradigmxyz/reth", tag = "v1.6.0" }
 reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth", tag = "v1.6.0" }
 reth-payload-builder = { git = "https://github.com/paradigmxyz/reth", tag = "v1.6.0" }
 reth-payload-validator = { git = "https://github.com/paradigmxyz/reth", tag = "v1.6.0" }
-reth-primitives = { git = "https://github.com/paradigmxyz/reth", tag = "v1.6.0", default-features = false, features = [
+reth-primitives = { git = "https://github.com/paradigmxyz/reth", tag = "v1.11.1", default-features = false, features = [
   "std",
   "serde-bincode-compat",
 ] }
